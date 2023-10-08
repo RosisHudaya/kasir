@@ -5,6 +5,14 @@ include "connect.php";
 if (isset($_POST['submit'])) {
     $kategori = $_POST['kategori'];
 
+    $query_check_category = "SELECT * FROM categories WHERE category_name = '$kategori'";
+    $result_check_category = mysqli_query($connect, $query_check_category);
+    if (mysqli_num_rows($result_check_category) > 0) {
+        $_SESSION['error_message'] = 'Kategori sudah digunakan!';
+        header('Location: category-admin.php');
+        exit;
+    }
+
     $query = "INSERT INTO categories (category_name) VALUES ('$kategori')";
     $result = mysqli_query($connect, $query);
 

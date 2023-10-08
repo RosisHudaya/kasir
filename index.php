@@ -2,30 +2,43 @@
 session_start();
 include "connect.php";
 
+if (isset($_SESSION['error_message'])) {
+    $error_message = $_SESSION['error_message'];
+    unset($_SESSION['error_message']);
+}
+
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM users WHERE email='$email' and password='$password'";
-    $result = mysqli_query($connect, $query);
-    $cek = mysqli_fetch_assoc($result);
-
-    if ($cek) {
-        $_SESSION['user_id'] = $cek['user_id'];
-        $_SESSION['username'] = $cek['username'];
-        $_SESSION['type'] = $cek['type'];
-
-        if ($cek['type'] == 0) {
-            header("Location: home-kasir.html");
-            exit;
-        } else if ($cek['type'] == 1) {
-            header("Location: home-admin.php");
-            exit;
-        }
+    if (empty($email) && empty($password)) {
+        $error_message = 'Email dan password harus diisi.';
+    } elseif (empty($email)) {
+        $error_message = 'Email harus diisi.';
+    } elseif (empty($password)) {
+        $error_message = 'Password harus diisi.';
     } else {
-        $_SESSION['error_message'] = 'Email atau password salah.';
-        header("Location: index.php");
-        exit;
+        $password = md5($password);
+
+        $query = "SELECT * FROM users WHERE email='$email' and password='$password'";
+        $result = mysqli_query($connect, $query);
+        $cek = mysqli_fetch_assoc($result);
+
+        if ($cek) {
+            $_SESSION['user_id'] = $cek['user_id'];
+            $_SESSION['username'] = $cek['username'];
+            $_SESSION['type'] = $cek['type'];
+
+            if ($cek['type'] == 1) {
+                header("Location: home-kasir.php");
+                exit;
+            } else if ($cek['type'] == 2) {
+                header("Location: home-admin.php");
+                exit;
+            }
+        } else {
+            $error_message = 'Email atau password salah.';
+        }
     }
 }
 
@@ -55,6 +68,11 @@ mysqli_close($connect);
                         <h4 class="text-center">Login</h4>
                     </div>
                     <div class="card-body">
+                        <?php if (isset($error_message)): ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $error_message; ?>
+                            </div>
+                        <?php endif; ?>
                         <form method="POST" action="index.php">
                             <div class="form-group">
                                 <label for="email">Email</label>
