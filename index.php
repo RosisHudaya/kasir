@@ -51,44 +51,47 @@ mysqli_close($connect);
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet" />
-    <style>
-        body {
-            font-family: "Nunito", sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="text-center">Login</h4>
-                    </div>
-                    <div class="card-body">
-                        <?php if (isset($error_message)): ?>
-                            <div class="alert alert-danger" role="alert">
-                                <?php echo $error_message; ?>
-                            </div>
-                        <?php endif; ?>
-                        <form method="POST" action="index.php">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Masukkan email" />
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="Masukkan password" />
-                            </div>
-                            <input type="submit" class="btn btn-primary btn-block" value="Login" />
-                        </form>
-                    </div>
+    <div class="d-flex justify-content-center mt-2">
+        <div class="col-md-5 d-flex align-items-center">
+            <div class="col-md-12 py-5">
+                <div class="form-group col-md-10">
+                    <h4 class="title-wel mb-0">
+                        WELCOME TO
+                    </h4>
+                    <p class="title-p">Cashier Website with PHP <span class="title-span">native</span></p>
                 </div>
+                <hr class="my-4 hr-color">
+                <?php if (isset($error_message)): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $error_message; ?>
+                    </div>
+                <?php endif; ?>
+                <form method="POST" action="index.php">
+                    <div class="form-group col-md-12">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control form-login" id="email" name="email"
+                            placeholder="masukkan email" />
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control form-login mb-5" id="password" name="password"
+                            placeholder="masukkan password" />
+                    </div>
+                    <div class="form-group col-md-12">
+                        <input type="submit" class="btn btn-block btn-login" value="LOGIN" />
+                    </div>
+                </form>
+                <hr class="my-4 hr-color">
+                <hr class="col-md-8 my-4 hr-color">
+                <hr class="col-md-4 my-4 hr-color">
             </div>
+        </div>
+        <div class="col-md-5 mt-4">
+            <img class="animated-image" src="assets/kasir.jpg" alt="bg-login">
         </div>
     </div>
 

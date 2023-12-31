@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&family=Gabarito&family=Poppins:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&family=Gabarito&family=Poppins&display=swap");
+
+:root {
+  --main-color: #17a2b8;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+}
+
+.title-wel {
+  font-family: "Gabarito", cursive !important;
+  font-weight: 900;
+  font-size: 42px;
+}
+
+.title-p {
+  font-size: 18px;
+}
+
+.title-span {
+  color: var(--main-color);
+}
+
+.hr-color {
+  background: linear-gradient(
+    to right,
+    #edc9d1,
+    #eff2f6,
+    #d3eced,
+    #d1eae0,
+    #eedfcf,
+    #9aa8be
+  );
+  height: 1px;
+  border: none;
+}
+
+.form-login {
+  border-radius: 30px;
+  border-color: var(--main-color);
+  padding: 24px 24px;
+}
+
+.form-login::placeholder {
+  color: #c8d3f9;
+  font-weight: 100;
+}
+
+.form-login:focus {
+  box-shadow: none;
+  border-color: var(--main-color);
+}
+
+.btn-login {
+  font-family: "Gabarito", cursive !important;
+  color: white;
+  background: var(--main-color);
+  border-radius: 30px;
+  padding: 12px 12px;
+}
+
+@keyframes slideUpDown {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animated-image {
+  animation: slideUpDown 4s infinite;
+}
